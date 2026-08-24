@@ -1,0 +1,110 @@
+:root {
+  /* Core Foundation Variables - Light Mode */
+  --bg-primary: #fdfbf7;      /* Warm white / Off-white */
+  --bg-secondary: #f4f0ea;    /* Soft ivory */
+  
+  --text-primary: #121212;    /* Deep charcoal */
+  --text-secondary: #4a4a4a;  /* Near-black */
+  --text-muted: #757575;
+  
+  --brand-primary: #c92a2a;   /* Gulf Union Red - adjust to their exact corporate red */
+  --brand-accent: #d4af37;    /* Subtle gold for premium feel */
+  
+  --border-color: rgba(0, 0, 0, 0.08);
+  
+  --glass-bg: rgba(253, 251, 247, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+
+  --font-heading: 'Geist Sans', sans-serif;
+  --font-body: 'Geist Sans', sans-serif;
+}
+
+[data-theme='dark'] {
+  /* Core Foundation Variables - Dark Mode */
+  --bg-primary: #0a0a0a;      /* Deep charcoal */
+  --bg-secondary: #141414;    /* Dark graphite */
+  
+  --text-primary: #fafafa;    /* Soft white typography */
+  --text-secondary: #d4d4d4;
+  --text-muted: #888888;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  
+  --glass-bg: rgba(10, 10, 10, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+/* Reset & Setup */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Editorial Hero Typography */
+.text-hero {
+  font-size: clamp(3rem, 6vw, 8rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.text-section-title {
+  font-size: clamp(2.5rem, 4vw, 5rem);
+  font-weight: 400;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Base Link & Button Resets */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+}

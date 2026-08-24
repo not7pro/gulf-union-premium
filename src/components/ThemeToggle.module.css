@@ -1,0 +1,53 @@
+.toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.toggle:hover {
+  background: var(--border-color);
+  transform: scale(1.05);
+}
+
+.iconContainer {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun, .moon {
+  position: absolute;
+  transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.moon {
+  opacity: 0;
+  transform: translateY(-20px) rotate(-90deg);
+}
+
+.sun {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+}
+
+.isDark .sun {
+  opacity: 0;
+  transform: translateY(20px) rotate(90deg);
+}
+
+.isDark .moon {
+  opacity: 1;
+  transform: translateY(0) rotate(0);
+}

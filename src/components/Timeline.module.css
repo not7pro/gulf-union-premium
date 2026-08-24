@@ -1,0 +1,133 @@
+.carousel {
+  height: 500vh; /* Determines how long the scroll lasts */
+  position: relative;
+  background-color: var(--bg-primary);
+}
+
+.stickyContainer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 5%;
+}
+
+.header {
+  margin-bottom: 60px;
+}
+
+.header p {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+.track {
+  display: flex;
+  gap: 100px;
+  padding-left: 20%;
+  width: max-content;
+}
+
+.item {
+  width: 450px;
+  flex-shrink: 0;
+  position: relative;
+  padding-bottom: 80px;
+}
+
+.category {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--brand-primary);
+  margin-bottom: 24px;
+}
+
+.year {
+  font-size: 6rem;
+  font-family: var(--font-heading);
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 24px;
+  letter-spacing: -0.05em;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.desc {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 150%; /* Connects to next item */
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.dot {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--brand-primary);
+  transition: transform 0.3s ease;
+}
+
+.item:hover .dot {
+  transform: scale(1.5);
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    height: auto;
+  }
+  
+  .stickyContainer {
+    position: relative;
+    height: auto;
+    padding: 100px 5%;
+  }
+  
+  .track {
+    flex-direction: column;
+    padding-left: 0;
+    gap: 60px;
+    transform: none !important; /* Disable framer motion x transform on mobile */
+    width: 100%;
+  }
+  
+  .item {
+    width: 100%;
+    padding-bottom: 0;
+    padding-left: 40px;
+  }
+  
+  .line {
+    width: 1px;
+    height: 150%;
+    top: 10px;
+    left: 0;
+  }
+  
+  .dot {
+    top: 0;
+    left: -4px;
+  }
+}
