@@ -1,0 +1,519 @@
+.brandsPage {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 1. PAGE HERO */
+.hero {
+  height: 100vh;
+  padding: 120px 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.heroContent {
+  max-width: 800px;
+  position: relative;
+  z-index: 10;
+}
+
+.heroTitle {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+.heroStatement {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.heroVisual {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 50vw;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeUp 1.5s ease 0.5s forwards;
+}
+
+.heroImage {
+  position: absolute;
+  max-width: 400px;
+  max-height: 60vh;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+}
+
+.heroImage1 { transform: translateX(-40px) scale(0.9); z-index: 1; opacity: 0.6; }
+.heroImage2 { transform: translateX(40px) scale(0.9); z-index: 2; opacity: 0.8; }
+.heroImage3 { transform: translateY(20px) scale(1.1); z-index: 3; }
+
+/* 2. PORTFOLIO INTRODUCTION */
+.intro {
+  min-height: 80vh;
+  padding: 160px 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  background-color: var(--bg-secondary);
+}
+
+.introContent {
+  max-width: 600px;
+}
+
+.introStatement {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+
+.introVisual {
+  aspect-ratio: 4/5;
+  background-color: var(--bg-tertiary);
+  overflow: hidden;
+  position: relative;
+}
+
+.introVisual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 6. BRAND NAVIGATION */
+.brandNav {
+  position: fixed;
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 50;
+  mix-blend-mode: difference;
+  color: white;
+  pointer-events: none; /* Let clicks pass through if needed, or JS controlled */
+}
+
+.navItem {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navItem::before {
+  content: '';
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.navItemActive {
+  opacity: 1;
+  transform: translateX(10px);
+}
+
+.navItemActive::before {
+  width: 32px;
+}
+
+/* 3. BRAND SHOWCASE SECTIONS */
+.brandSection {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 10%;
+  display: flex;
+  align-items: center;
+}
+
+.brandContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 600px;
+}
+
+.brandName {
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.brandSlogan {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  opacity: 0.9;
+}
+
+.brandDesc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.discoverBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+  width: fit-content;
+  transition: opacity 0.3s ease;
+}
+
+.discoverBtn:hover {
+  opacity: 0.6;
+}
+
+/* PRODUCT PREVIEW (8 & 9) */
+.productPreview {
+  margin-top: 40px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 24px;
+}
+
+.previewTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.formatList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.formatTag {
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  border: 1px solid rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.previewImageContainer {
+  margin-top: 24px;
+  position: relative;
+  height: 200px;
+  width: 150px;
+  background: rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease, background 0.4s ease;
+  cursor: pointer;
+}
+
+.previewImage {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.previewHoverIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  background: white;
+  color: black;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.previewImageContainer:hover {
+  background: rgba(0,0,0,0.06);
+  transform: scale(1.04);
+}
+
+.previewImageContainer:hover .previewImage {
+  transform: scale(1.05);
+}
+
+.previewImageContainer:hover .previewHoverIcon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* SPECIFIC BRAND LAYOUTS (4. ALTERNATE COMPOSITIONS) */
+
+/* ORIGINAL: Image RIGHT / text LEFT */
+.originalSection {
+  background: #FAFAFA;
+  color: var(--text-primary);
+}
+.originalVisual {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40vw;
+  height: 80vh;
+}
+.originalVisual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* KLASSE: Full-width image with floating typography */
+.klasseSection {
+  background: #111;
+  color: #FFF;
+  justify-content: center;
+  text-align: center;
+}
+.klasseContent {
+  align-items: center;
+}
+.klasseVisual {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0.4;
+}
+.klasseVisual img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+/* COBRA: Dark immersive */
+.cobraSection {
+  background: #0A0A0A;
+  color: #FFF;
+}
+.cobraVisual {
+  position: absolute;
+  left: 0; top: 0; width: 60%; height: 100%;
+  background: linear-gradient(90deg, rgba(200,0,0,0.1), transparent);
+}
+.cobraVisual img {
+  width: 100%; height: 100%; object-fit: contain;
+  transform: scale(1.2) translateX(-10%);
+}
+.cobraContent {
+  margin-left: auto;
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* CAPTAIN: Image LEFT / text RIGHT (Playful) */
+.captainSection {
+  background: #F2F8F1;
+  color: #2E4E2C;
+}
+.captainVisual {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40vw;
+  height: 70vh;
+}
+.captainVisual img {
+  width: 100%; height: 100%; object-fit: contain;
+}
+.captainContent {
+  margin-left: auto;
+}
+
+/* SPLASH: Centered product composition */
+.splashSection {
+  background: #EAF6FB;
+  color: #1A4D6B;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.splashVisual {
+  width: 100%;
+  height: 40vh;
+  margin-bottom: 40px;
+}
+.splashVisual img {
+  width: 100%; height: 100%; object-fit: contain;
+}
+.splashContent {
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* ORI: Editorial split-screen */
+.oriSection {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #FFF;
+}
+.oriVisual {
+  height: 100vh;
+  background: #F5F5F5;
+}
+.oriVisual img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.oriContent {
+  padding: 120px 10%;
+  justify-content: center;
+}
+
+/* AL QOBTAN: Full-width closing */
+.alqobtanSection {
+  background: #FDF9F1;
+  color: #4A3511;
+  justify-content: center;
+  text-align: center;
+}
+.alqobtanVisual {
+  position: absolute;
+  bottom: -10%; right: -5%; width: 50vw; height: 80vh;
+  opacity: 0.5;
+}
+.alqobtanVisual img {
+  width: 100%; height: 100%; object-fit: contain;
+}
+.alqobtanContent {
+  align-items: center;
+}
+
+/* 11. FINAL PORTFOLIO SECTION */
+.collageSection {
+  padding: 160px 5%;
+  background: #FFF;
+  text-align: center;
+}
+.collageGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 80px;
+}
+.collageItem {
+  aspect-ratio: 3/4;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+.collageItem:nth-child(2) { transform: translateY(40px); }
+.collageItem:nth-child(3) { transform: translateY(-20px); }
+.collageItem:nth-child(4) { transform: translateY(60px); }
+.collageItem:hover {
+  transform: translateY(-10px) scale(1.02);
+  z-index: 10;
+}
+.collageItem img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+/* 12. CORPORATE CONNECTION */
+.corporateSection {
+  padding: 160px 5%;
+  background: #111;
+  color: #FFF;
+}
+.corpMetrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  margin-top: 80px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 60px;
+}
+.metricVal {
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: 300;
+  margin-bottom: 8px;
+}
+.metricLabel {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+
+/* 13. CTA */
+.ctaSection {
+  padding: 160px 5%;
+  background: #FFF;
+  text-align: center;
+}
+.ctaButtons {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 60px;
+}
+.ctaBtn {
+  padding: 16px 32px;
+  border: 1px solid var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+}
+.ctaBtn:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+@media (max-width: 1024px) {
+  .brandNav { display: none; }
+  .intro, .oriSection { grid-template-columns: 1fr; }
+  .oriVisual { height: 50vh; }
+  .originalVisual, .captainVisual, .cobraVisual, .alqobtanVisual {
+    position: relative; width: 100%; height: 50vh; transform: none; right: 0; left: 0; top: 0; bottom: 0; margin-bottom: 40px;
+  }
+  .brandSection { padding: 80px 5%; display: block; }
+  .brandContent { align-items: flex-start; text-align: left; max-width: 100%; margin: 0; }
+  .collageGrid { grid-template-columns: 1fr 1fr; }
+  .collageItem:nth-child(n) { transform: none; }
+  .corpMetrics { grid-template-columns: 1fr 1fr; }
+  .ctaButtons { flex-direction: column; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
