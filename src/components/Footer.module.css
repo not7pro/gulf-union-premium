@@ -1,0 +1,98 @@
+.footer {
+  background: #111;
+  color: #F5F5F5;
+  padding: 80px 5% 40px;
+}
+
+.footerGrid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footerLogo {
+  height: 40px;
+  width: auto;
+}
+
+.footerDesc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+  max-width: 300px;
+}
+
+.footerContact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerContact a {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footerContact a:hover {
+  color: #fff;
+}
+
+.columnTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,0.5);
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLinks a {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footerLinks a:hover {
+  color: #fff;
+}
+
+.footerBottom {
+  max-width: 1400px;
+  margin: 60px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+
+@media (max-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

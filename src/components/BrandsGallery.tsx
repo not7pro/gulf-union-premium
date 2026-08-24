@@ -4,29 +4,39 @@ import styles from "./BrandsGallery.module.css";
 import Link from "next/link";
 
 const BRANDS = [
-  { name: "Original", desc: "Our flagship fruit nectar. The authentic taste of nature, crafted for generations.", img: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=1500&auto=format&fit=crop" },
-  { name: "KLASSE", desc: "A premium lifestyle beverage for the discerning palate.", img: "https://images.unsplash.com/photo-1622543925917-763c34d1a86e?q=80&w=1500&auto=format&fit=crop" },
-  { name: "COBRA", desc: "Energy and vitality. The boost you need to conquer your day.", img: "https://images.unsplash.com/photo-1527661591450-b444d9c10e56?q=80&w=1500&auto=format&fit=crop" },
-  { name: "Captain", desc: "A favorite for kids and families, packed with essential vitamins.", img: "https://images.unsplash.com/photo-1556881286-fc6915169721?q=80&w=1500&auto=format&fit=crop" },
+  { name: "Original", slug: "original", desc: "Enjoy the Taste of Quality! Our flagship fruit nectar, crafted for generations.", img: "https://gulf-union.com/images/boriginal.png", groupImg: "https://gulf-union.com/images/boriginal%20grp.png" },
+  { name: "KLASSE", slug: "klasse", desc: "The True German Taste! A premium lifestyle malt beverage.", img: "https://gulf-union.com/images/bklasse.png", groupImg: "https://gulf-union.com/images/bklasse%20grp.png" },
+  { name: "COBRA", slug: "cobra", desc: "Stronger Than You Imagine. Energy and vitality for your day.", img: "https://gulf-union.com/images/bcobra.png", groupImg: "https://gulf-union.com/images/bcobra%20grp.png" },
+  { name: "Captain", slug: "captain", desc: "Every drop packed with fun! A favorite for kids and families.", img: "https://gulf-union.com/images/bcaptain.png", groupImg: "https://gulf-union.com/images/bcaptain%20grp.png" },
 ];
 
 export default function BrandsGallery() {
   return (
-    <section className={styles.galleryContainer}>
-      {BRANDS.map((brand, i) => (
+    <section className={styles.galleryContainer} aria-label="Featured Gulf Union brands">
+      {BRANDS.map((brand) => (
         <div key={brand.name} className={styles.brandPanel}>
           <div className={styles.brandLayout}>
             <div className={styles.imageWrapper}>
-              <img src={brand.img} alt={brand.name} className={styles.productImage} />
+              <img 
+                src={brand.groupImg} 
+                alt={`${brand.name} product range — ${brand.desc}`} 
+                className={styles.productImage} 
+                loading="lazy"
+              />
             </div>
             
             <div className={styles.content}>
               <h2 className={styles.brandName}>{brand.name}®</h2>
               <p className={styles.description}>{brand.desc}</p>
               
-              <Link href={`/brands/${brand.name.toLowerCase()}`} className="cta-link" style={{ marginTop: '24px' }}>
-                EXPLORE BRAND
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
+              <Link 
+                href={`/brands/${brand.slug}`} 
+                className="cta-link" 
+                style={{ marginTop: '24px' }}
+                aria-label={`Explore the ${brand.name} brand — ${brand.desc}`}
+              >
+                EXPLORE {brand.name.toUpperCase()}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>

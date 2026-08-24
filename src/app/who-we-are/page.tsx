@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Timeline from "@/components/Timeline";
+
+export const metadata: Metadata = {
+  title: "Who We Are — Our Story Since 1995",
+  description: "Discover Gulf Union Foods Co.'s journey from founding in 1995 to becoming a leading Saudi beverage manufacturer serving 42+ global markets.",
+  alternates: { canonical: "/who-we-are" },
+};
 
 export default function WhoWeAre() {
   return (
