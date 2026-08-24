@@ -1,26 +1,40 @@
 export default function GlobalPresence() {
   return (
-    <div style={{ backgroundColor: '#0a0a0a', color: '#fff', minHeight: '100vh' }}>
-      <header style={{ 
+    <main style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh' }}>
+      <header className="section" style={{ 
         height: '60vh', 
         display: 'flex', 
         alignItems: 'center', 
-        padding: '0 5%',
-        borderBottom: '1px solid rgba(255,255,255,0.1)'
+        borderBottom: '1px solid var(--border-color)',
+        background: 'var(--bg-secondary)'
       }}>
-        <div style={{ maxWidth: '800px', marginTop: '100px' }}>
-          <h1 className="text-hero">From the Gulf<br/>to the World.</h1>
-          <p style={{ fontSize: '1.5rem', color: '#888', marginTop: '24px' }}>
-            Enjoyed in over 40+ markets and 42+ countries globally.
+        <div className="container">
+          <span className="eyebrow">GLOBAL PRESENCE</span>
+          <h1 className="hero-heading">FROM SAUDI ARABIA<br/>TO THE WORLD.</h1>
+          <p className="body-large" style={{ marginTop: '24px', maxWidth: '600px' }}>
+            Enjoyed in over 42+ markets globally, our products bridge cultures and deliver premium quality to millions every day.
           </p>
         </div>
       </header>
 
-      <section style={{ padding: '120px 5%', textAlign: 'center' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', aspectRatio: '16/9', background: 'rgba(255,255,255,0.02)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <p style={{ fontSize: '1.5rem', color: '#888' }}>[ Interactive Global Map Visualization ]</p>
+      <section className="section" style={{ textAlign: 'center' }}>
+        <div className="container">
+          <div style={{ 
+            aspectRatio: '16/9', 
+            background: 'var(--bg-tertiary)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            position: 'relative'
+          }}>
+            {/* Minimalist SVG Map Placeholder */}
+            <p className="eyebrow">[ Custom SVG Map Visualization ]</p>
+            <div style={{ position: 'absolute', width: '8px', height: '8px', background: 'var(--brand-accent)', borderRadius: '50%', top: '40%', left: '60%' }}></div>
+            <div style={{ position: 'absolute', width: '8px', height: '8px', background: 'var(--brand-accent)', borderRadius: '50%', top: '35%', left: '50%' }}></div>
+            <div style={{ position: 'absolute', width: '8px', height: '8px', background: 'var(--brand-accent)', borderRadius: '50%', top: '45%', left: '70%' }}></div>
+          </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

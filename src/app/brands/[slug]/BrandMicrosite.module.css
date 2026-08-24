@@ -1,86 +1,78 @@
-.microsite {
-  background-color: var(--bg-primary);
+.brandHero {
   min-height: 100vh;
-}
-
-.hero {
-  height: 80vh;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  padding: 120px 5%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  background-color: var(--bg-secondary);
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+.heroLayout {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.heroVisual {
+  aspect-ratio: 3/4;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.productImage {
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
-  z-index: 1;
+  object-fit: cover;
 }
 
-.content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: #fff;
-  max-width: 800px;
-  padding: 0 5%;
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.desc {
+.brandName {
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.brandDesc {
   font-size: 1.5rem;
-  margin-top: 24px;
-  opacity: 0.9;
   line-height: 1.6;
-}
-
-.details {
-  padding: 120px 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 5%;
-}
-
-.formatBox {
-  background: var(--bg-secondary);
-  padding: 60px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
   max-width: 500px;
 }
 
-.formatBox h3 {
-  font-size: 1.25rem;
+.formats {
+  margin-top: 40px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 24px;
+}
+
+.formatList {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.formatTag {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 24px;
-  color: var(--text-primary);
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
 }
 
-.formatBox ul {
-  list-style: none;
-}
-
-.formatBox li {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  margin-bottom: 12px;
-  padding-left: 20px;
-  position: relative;
-}
-
-.formatBox li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--brand-primary);
+@media (max-width: 1024px) {
+  .heroLayout {
+    grid-template-columns: 1fr;
+  }
 }

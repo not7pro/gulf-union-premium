@@ -1,57 +1,64 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Timeline.module.css";
 
-const milestones = [
-  { year: "1995", title: "COMPANY FOUNDING", desc: "Established Gulf Union Foods Co to bring quality beverages to the market.", category: "FOUNDATION" },
-  { year: "1999", title: "PLANT 1", desc: "Launched our first production facility, laying the foundation for strong and sustainable growth.", category: "MANUFACTURING" },
-  { year: "2000", title: "ORIGINAL®", desc: "Introduced our flagship juice brand to families nationwide.", category: "BRAND" },
-  { year: "2003", title: "CAPTAIN®", desc: "Brought kids a fun, fruity drinks.", category: "BRAND" },
-  { year: "2004", title: "AL QOBTAN®", desc: "Affordable juice brand created to serve every household.", category: "BRAND" },
-  { year: "2005", title: "PLANT 1 EXPANSION", desc: "Major facility expansion inaugurated by Crown Prince Salman bin Abdulaziz Al Saud.", category: "EXPANSION" },
-  { year: "2010", title: "PLANT 3", desc: "Enhanced our capabilities by securing self-sufficiency in primary plastic packaging materials.", category: "MANUFACTURING" },
-  { year: "2011", title: "JORDAN BRANCH", desc: "Expanded regional presence with a new office in Jordan.", category: "EXPANSION" },
-  { year: "2012", title: "PLANT 4", desc: "Strengthened and diversified production by entering the world of carton packs.", category: "INNOVATION" },
-  { year: "2015", title: "PLANT 2", desc: "Upgraded operations and diversified production to meet growing regional and global demand.", category: "MANUFACTURING" },
-  { year: "2017", title: "KLASSE®", desc: "Entered the non-alcoholic beer market with Klasse® brand.", category: "INNOVATION" },
-  { year: "2018", title: "SPLASH®", desc: "Launched sparkling juice to refresh every occasion.", category: "BRAND" },
-  { year: "2019", title: "ORIGINAL® ZERO", desc: "Introduced sugar-free, premium juice sub-brand under the Original® portfolio.", category: "INNOVATION" },
-  { year: "2020", title: "COBRA®", desc: "Stepped into the energy drink segment with Cobra®.", category: "BRAND" },
-  { year: "2023", title: "ORI®", desc: "Expanded our beverage portfolio with Ori® soft drinks.", category: "INNOVATION" }
+const HISTORY = [
+  { year: "1995", title: "COMPANY FOUNDING", desc: "The journey of Gulf Union Foods Co. officially begins.", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" },
+  { year: "1999", title: "THE FIRST PLANT", desc: "Launch of Plant 1, establishing our core manufacturing foundation.", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop" },
+  { year: "2000", title: "ORIGINAL® LAUNCH", desc: "Our flagship brand hits the market, setting a new standard for juices.", img: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=2000&auto=format&fit=crop" },
+  { year: "2003", title: "CAPTAIN® LAUNCH", desc: "Introducing a dedicated line for families and children.", img: "https://images.unsplash.com/photo-1556881286-fc6915169721?q=80&w=2000&auto=format&fit=crop" },
+  { year: "2010", title: "PLANT 3 COMMISSIONED", desc: "Massive expansion of our production capabilities.", img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2000&auto=format&fit=crop" }
 ];
 
 export default function Timeline() {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const items = containerRef.current.querySelectorAll(`.${styles.timelineItem}`);
+      
+      items.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        // If the item is in the top half of the screen
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          setActiveIndex(index);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <section ref={targetRef} className={styles.carousel}>
-      <div className={styles.stickyContainer}>
-        <div className={styles.header}>
-          <h2 className="text-section-title">Our Story</h2>
-          <p>A legacy of quality since 1995.</p>
+    <section className={styles.timelineContainer} ref={containerRef}>
+      {HISTORY.map((item, i) => (
+        <div key={item.year} className={styles.timelineItem}>
+          <div className={styles.overlay}></div>
+          <img src={item.img} alt={item.year} className={styles.backgroundImage} style={{ 
+            opacity: activeIndex === i ? 1 : 0.4,
+            transform: activeIndex === i ? 'scale(1)' : 'scale(1.05)',
+            transition: 'opacity 1s ease, transform 1s ease'
+          }} />
+          
+          <div className={styles.content}>
+            <div className={styles.year}>{item.year}</div>
+            <h2 className={styles.title}>{item.title}</h2>
+            <p className={styles.description}>{item.desc}</p>
+          </div>
         </div>
-        
-        <motion.div style={{ x }} className={styles.track}>
-          {milestones.map((item, index) => (
-            <div key={item.year} className={styles.item}>
-              <div className={styles.category}>{item.category}</div>
-              <div className={styles.year}>{item.year}</div>
-              <h3 className={styles.title}>{item.title}</h3>
-              <p className={styles.desc}>{item.desc}</p>
-              
-              <div className={styles.line}>
-                <div className={styles.dot}></div>
-              </div>
-            </div>
-          ))}
-        </motion.div>
+      ))}
+
+      <div className={styles.progressIndicator}>
+        {HISTORY.map((_, i) => (
+          <div 
+            key={i} 
+            className={`${styles.dot} ${activeIndex === i ? styles.dotActive : ""}`} 
+          />
+        ))}
       </div>
     </section>
   );

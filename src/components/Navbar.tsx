@@ -5,56 +5,48 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 import styles from "./Navbar.module.css";
-import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
+  // Force dark navbar on homepage hero, unless scrolled
+  const isHomepage = pathname === "/";
+  const navClass = scrolled ? `${styles.navbar} ${styles.navbarScrolled}` : styles.navbar;
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
-      <div className={styles.container}>
-        <Link href="/" className={styles.logo}>
-          <img src="https://gulf-union.com/images/logo.png" alt="Gulf Union Foods" />
-        </Link>
-        
-        <div className={`${styles.links} ${mobileMenuOpen ? styles.mobileOpen : ""}`}>
-          <Link href="/who-we-are" className={`${styles.link} ${pathname === "/who-we-are" ? styles.active : ""}`}>Who We Are</Link>
-          <Link href="/brands" className={`${styles.link} ${pathname.startsWith("/brands") ? styles.active : ""}`}>Brands</Link>
-          <Link href="/manufacturing" className={`${styles.link} ${pathname === "/manufacturing" ? styles.active : ""}`}>Manufacturing</Link>
-          <Link href="/sustainability" className={`${styles.link} ${pathname === "/sustainability" ? styles.active : ""}`}>Sustainability</Link>
-          <Link href="/global-presence" className={`${styles.link} ${pathname === "/global-presence" ? styles.active : ""}`}>Global Presence</Link>
-          <Link href="/newsroom" className={`${styles.link} ${pathname === "/newsroom" ? styles.active : ""}`}>Newsroom</Link>
-          <Link href="/careers" className={`${styles.link} ${pathname === "/careers" ? styles.active : ""}`}>Careers</Link>
-          <Link href="/contact" className={`${styles.link} ${pathname === "/contact" ? styles.active : ""}`}>Contact</Link>
-          
-          <div className={styles.actions}>
-            <button className={styles.langToggle}>EN / AR</button>
-            <ThemeToggle />
-          </div>
-        </div>
+    <nav className={navClass} style={!scrolled && !isHomepage ? { color: 'var(--text-primary)' } : {}}>
+      <Link href="/" className={styles.logo}>
+        GULF UNION
+      </Link>
 
-        <button 
-          className={styles.mobileToggle}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle Menu"
-        >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+      <div className={styles.navLinks}>
+        <Link href="/who-we-are">Who We Are</Link>
+        <Link href="/brands">Brands</Link>
+        <Link href="/manufacturing">Manufacturing</Link>
+        <Link href="/sustainability">Sustainability</Link>
+        <Link href="/global-presence">Global Presence</Link>
+        <Link href="/newsroom">Newsroom</Link>
+      </div>
+
+      <div className={styles.actions}>
+        <button className={styles.langToggle}>AR</button>
+        <ThemeToggle />
+        <button className={styles.mobileMenuBtn}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
         </button>
       </div>
     </nav>

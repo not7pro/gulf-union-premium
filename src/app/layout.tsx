@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import Navbar from "../components/Navbar";
+import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
+// Using Geist as the premium modern sans-serif as suggested by the user
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
-  title: "Gulf Union Foods | Premium Beverage Manufacturing",
-  description: "Crafting moments, growing beyond. Official corporate website of Gulf Union Foods Co.",
+  title: "Gulf Union Foods | Premium Manufacturing",
+  description: "Saudi multinational FMCG corporate website.",
 };
 
 export default function RootLayout({
@@ -20,10 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geistSans.variable}>
-      <body>
+    <html lang="en">
+      <body className={geistSans.className}>
         <Navbar />
-        <main>{children}</main>
+        {children}
       </body>
     </html>
   );
