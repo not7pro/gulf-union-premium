@@ -1,124 +1,249 @@
-.plantSelector {
-  min-height: 100vh;
-  background-color: var(--bg-primary);
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.visualSide {
-  flex: 1;
-  position: relative;
-}
-
-.image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  filter: grayscale(20%);
-}
-
-.overlayGrid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-  background-size: 100px 100px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.dataSide {
-  width: 500px;
+.plantSection {
+  padding: 160px 6%;
   background: var(--bg-primary);
-  padding: 80px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-left: 1px solid var(--border-color);
-  z-index: 3;
-}
-
-.navigation {
-  display: flex;
-  gap: 24px;
-  margin-bottom: 60px;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 24px;
-}
-
-.navItem {
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: color 0.3s ease;
   position: relative;
 }
 
-.navItemActive {
-  color: var(--text-primary);
-  font-weight: 500;
+.topHeader {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 80px;
 }
 
-.navItemActive::after {
-  content: '';
-  position: absolute;
-  bottom: -25px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--text-primary);
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.plantTitle {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 300;
-  letter-spacing: -0.02em;
+.tabList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-bottom: 40px;
 }
 
-.statRow {
+.tabBtn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+.tabId {
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.tabMeta {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 32px;
+  gap: 2px;
 }
 
-.statValue {
-  font-size: 2rem;
-  font-weight: 400;
-  color: var(--text-primary);
-}
-
-.statLabel {
+.tabName {
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.tabArea {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.tabBtn:hover {
+  border-color: var(--brand-gold);
+  transform: translateY(-2px);
+}
+
+.tabBtnActive {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+.tabBtnActive .tabId {
+  color: var(--brand-gold);
+}
+
+.tabBtnActive .tabArea {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.displayCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  min-height: 600px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.03);
+}
+
+.visualPane {
+  position: relative;
+  background: var(--bg-tertiary);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.facilityImg {
+  max-width: 90%;
+  max-height: 480px;
+  object-fit: contain;
+  animation: imageFadeScale 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.paneOverlay {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.paneBadge {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 6px 12px;
+  backdrop-filter: blur(8px);
+}
+
+.paneId {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.dataPane {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.plantRole {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-gold);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.plantHeading {
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.plantDesc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 24px 0;
+  margin-bottom: 28px;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statVal {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.statLbl {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.specList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.specItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 0.85rem;
+}
+
+.specKey {
   color: var(--text-muted);
 }
 
+.specVal {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
 @media (max-width: 1024px) {
-  .plantSelector {
-    flex-direction: column;
+  .tabList {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .visualSide {
-    height: 50vh;
-    flex: none;
+  .displayCard {
+    grid-template-columns: 1fr;
   }
-  .dataSide {
-    width: 100%;
-    padding: 40px 5%;
-    border-left: none;
+  .dataPane {
+    padding: 40px;
+  }
+  .visualPane {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tabList {
+    grid-template-columns: 1fr;
+  }
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }

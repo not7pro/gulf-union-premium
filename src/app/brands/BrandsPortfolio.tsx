@@ -85,7 +85,7 @@ export default function BrandsPortfolio() {
           </p>
         </div>
         <div className={styles.introVisual}>
-          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=2000&auto=format&fit=crop" alt="Production" />
+          <img src="https://gulf-union.com/images/brandback.jpg" alt="Gulf Union Foods Industrial Production" loading="lazy" />
         </div>
       </section>
 

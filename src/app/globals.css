@@ -1,43 +1,42 @@
 :root {
-  /* LIGHT MODE (DEFAULT & PRIMARY) */
-  --bg-primary: #FCFCFC;
-  --bg-secondary: #F3F3F3;
-  --bg-tertiary: #EAEAEA;
+  --bg-primary: #FAFAF8;
+  --bg-secondary: #F0EFEB;
+  --bg-tertiary: #E5E4E0;
+  --bg-dark: #0C0C0C;
   
   --text-primary: #1A1A1A;
-  --text-secondary: #4A4A4A;
-  --text-muted: #888888;
+  --text-secondary: #555555;
+  --text-muted: #999999;
   
-  --border-color: #E5E5E5;
+  --border-color: rgba(0,0,0,0.08);
   
-  /* Brand Accents */
-  --brand-primary: #B22222; /* Deep Gulf Union Red */
-  --brand-accent: #005A9C; /* Corporate Blue */
+  --brand-gold: #C5A55A;
+  --brand-deep: #1A1C75;
+  --brand-red: #B22222;
   
-  /* Layout constraints */
-  --container-max: 1600px;
-  --section-padding: 120px 5%;
+  --container-max: 1400px;
+  --section-padding: 140px 6%;
   --header-height: 80px;
 
-  /* Typography */
-  --font-hero: 5.5rem;
-  --font-h1: 4rem;
-  --font-h2: 3rem;
+  --font-hero: 6rem;
+  --font-h1: 4.5rem;
+  --font-h2: 3.2rem;
   --font-h3: 2rem;
-  --font-body: 1.1rem;
-  --font-small: 0.9rem;
+  --font-body: 1.05rem;
+  --font-small: 0.85rem;
+  
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.45, 0, 0.15, 1);
 }
 
 [data-theme='dark'] {
-  --bg-primary: #0F0F0F;
-  --bg-secondary: #1A1A1A;
-  --bg-tertiary: #242424;
-  
-  --text-primary: #F5F5F5;
-  --text-secondary: #CCCCCC;
-  --text-muted: #888888;
-  
-  --border-color: #333333;
+  --bg-primary: #0C0C0C;
+  --bg-secondary: #141414;
+  --bg-tertiary: #1E1E1E;
+  --text-primary: #F0EFEB;
+  --text-secondary: #AAAAAA;
+  --text-muted: #666666;
+  --border-color: rgba(255,255,255,0.08);
 }
 
 * {
@@ -46,16 +45,24 @@
   padding: 0;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   max-width: 100vw;
   overflow-x: hidden;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: background-color 0.5s ease, color 0.5s ease;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--brand-deep);
+  color: #fff;
 }
 
 a {
@@ -63,89 +70,270 @@ a {
   text-decoration: none;
 }
 
-/* Typography Classes */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY SYSTEM
+   ═══════════════════════════════════════ */
+
 .eyebrow {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 600;
+  letter-spacing: 0.2em;
+  font-weight: 500;
   color: var(--text-muted);
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   display: block;
 }
 
 .hero-heading {
-  font-size: clamp(3rem, 6vw, var(--font-hero));
-  line-height: 1.05;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.8rem, 7vw, var(--font-hero));
+  line-height: 1.02;
+  font-weight: 300;
+  letter-spacing: -0.03em;
 }
 
 .section-heading {
   font-size: clamp(2rem, 4vw, var(--font-h2));
-  line-height: 1.1;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  line-height: 1.08;
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 .body-large {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  line-height: 1.6;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  line-height: 1.7;
   font-weight: 400;
   color: var(--text-secondary);
 }
 
 .body-text {
   font-size: var(--font-body);
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--text-secondary);
 }
 
-/* Layout Utilities */
+/* ═══════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════ */
+
 .container {
   max-width: var(--container-max);
   margin: 0 auto;
   width: 100%;
+  padding: 0 6%;
 }
 
 .section {
   padding: var(--section-padding);
 }
 
-/* Interactive Elements */
+/* ═══════════════════════════════════════
+   INTERACTIVE ELEMENTS
+   ═══════════════════════════════════════ */
+
 .cta-link {
   display: inline-flex;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  border-bottom: 1px solid var(--text-primary);
-  padding-bottom: 4px;
-  transition: opacity 0.3s ease;
+  position: relative;
+  padding-bottom: 6px;
   cursor: pointer;
+  transition: color 0.4s ease;
 }
 
-.cta-link:hover {
-  opacity: 0.6;
+.cta-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.cta-link:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
 }
 
 .cta-link svg {
-  margin-left: 8px;
-  transition: transform 0.3s ease;
+  margin-left: 10px;
+  transition: transform 0.4s var(--ease-out-expo);
 }
 
 .cta-link:hover svg {
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
-/* Page Transitions */
-.page-transition-enter {
-  opacity: 0;
-  transform: translateY(10px);
+/* Premium button */
+.btn-premium {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--text-primary);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.5s var(--ease-out-expo);
 }
-.page-transition-enter-active {
-  opacity: 1;
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--text-primary);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.btn-premium:hover {
+  color: var(--bg-primary);
+}
+
+.btn-premium:hover::before {
   transform: translateY(0);
-  transition: opacity 600ms ease, transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-premium span {
+  position: relative;
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════
+   DIVIDER
+   ═══════════════════════════════════════ */
+
+.elegant-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--brand-gold);
+  margin: 32px 0;
+}
+
+/* ═══════════════════════════════════════
+   MARQUEE
+   ═══════════════════════════════════════ */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ═══════════════════════════════════════
+   IMAGE REVEAL
+   ═══════════════════════════════════════ */
+
+@keyframes imageReveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes imageFadeScale {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════
+   CURSOR GLOW (subtle)
+   ═══════════════════════════════════════ */
+
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197,165,90,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 80px 5%;
+  }
+}
+
+/* ═══════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
 }
