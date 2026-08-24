@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LenisProvider from "@/components/LenisProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -100,11 +101,13 @@ export default function RootLayout({
         }}>
           Skip to main content
         </a>
-        <Navbar />
-        <div id="main-content">
-          {children}
-        </div>
-        <Footer />
+        <LenisProvider>
+          <Navbar />
+          <div id="main-content">
+            {children}
+          </div>
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );
